@@ -3,7 +3,7 @@
 require_relative "solution"
 
 class Day1 < Solution
-  FILE_CONTENT = File.read("./solutions/day1-input.txt")
+  FILE_CONTENT = File.read("./input/day1-input.txt")
 
   def self.title = "Day 1: Historian Hysteria"
 

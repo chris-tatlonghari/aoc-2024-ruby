@@ -4,7 +4,7 @@ require_relative "solution"
 
 
 class Day2 < Solution
-  FILE_CONTENT = File.read("./solutions/day2-input.txt")
+  FILE_CONTENT = File.read("./input/day2-input.txt")
   SAFETY_THRESHOLD = 3
 
   def self.title = "Day 2: Red-Nosed Reports"
