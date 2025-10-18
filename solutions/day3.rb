@@ -15,18 +15,15 @@ class Day3 < Solution
   MSG
 
   def self.solve
+    sum = 0
     regex = /mul\(\d{1,3},\d{1,3}\)/
     capture_regex = /mul\((\d{1,3}),(\d{1,3})\)/
-    valid_operations = []
-    sum = 0
 
     FILE_CONTENT.split("\n").each do |line|
-      valid_operations.append(*line.scan(regex))
-    end
-
-    valid_operations.each do |operation|
-      num1, num2 = *operation.match(capture_regex).captures
-      sum += num1.to_i * num2.to_i
+      line.scan(regex).each do |operation|
+        num1, num2 = *operation.match(capture_regex).captures
+        sum += num1.to_i * num2.to_i
+      end
     end
 
     puts sum
