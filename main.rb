@@ -1,3 +1,3 @@
 require_relative "solutions"
 
-Day2.solve2
+Day3.solve
