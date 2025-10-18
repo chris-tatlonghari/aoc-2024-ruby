@@ -4,6 +4,7 @@ require_relative "solution"
 
 class Day3 < Solution
   FILE_CONTENT = File.read("./input/day3-input.txt")
+  VALID_OPERATION_REGEX = /mul\((\d{1,3}),(\d{1,3})\)/
 
   def self.title = "Day 3: Mull It Over"
 
@@ -15,23 +16,14 @@ class Day3 < Solution
   MSG
 
   def self.solve
-    sum = 0
-    regex = /mul\(\d{1,3},\d{1,3}\)/
-    capture_regex = /mul\((\d{1,3}),(\d{1,3})\)/
-
-    FILE_CONTENT.split("\n").each do |line|
-      line.scan(regex).each do |operation|
-        num1, num2 = *operation.match(capture_regex).captures
-        sum += num1.to_i * num2.to_i
-      end
-    end
-
-    puts sum
+    puts FILE_CONTENT.scan(VALID_OPERATION_REGEX).sum{ |a, b| a.to_i * b.to_i } # 173419328
   end
 
   def self.solve2
-    sum = 0
+    valid_operations = FILE_CONTENT.gsub(/don't\(\).*?do\(\)/m, '')
 
-    puts sum
+    valid_operations = valid_operations.split(/don't\(\)/).first if valid_operations.include?("don't()")
+
+    puts valid_operations.scan(VALID_OPERATION_REGEX).sum { |a, b| a.to_i * b.to_i } # 90669332
   end
 end
