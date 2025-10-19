@@ -1,6 +1,7 @@
 require_relative "solutions"
 
-solution = Day5
+solution_class_name = "Day#{ARGV[0]&.to_i || 1}"
+solution = Object.const_get(solution_class_name)
 
 puts "---------------------------"
 puts solution.title
