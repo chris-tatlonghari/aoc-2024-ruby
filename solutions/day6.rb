@@ -5,7 +5,8 @@ require_relative "solution"
 class Day6 < Solution
   MATRIX = File.readlines("./input/day6-input.txt", chomp: true).map(&:chars)
   DIRECTION_STEPS = [[0,-1],[1, 0],[0, 1],[-1, 0]]
-  OBSTACLE = "#"
+  OBSTACLE_CHAR = '#'
+  GUARD_CHAR = '^'
 
   def self.title = "Day 6: Guard Gallivant"
 
@@ -24,7 +25,7 @@ class Day6 < Solution
       dx, dy = DIRECTION_STEPS[direction]
       break unless (0..MATRIX.first.size-1).cover?(x + dx) && (0..MATRIX.size-1).cover?(y + dy)
 
-      if MATRIX[y + dy][x + dx] == OBSTACLE
+      if MATRIX[y + dy][x + dx] == OBSTACLE_CHAR
         direction = (direction + 1) % DIRECTION_STEPS.size
       else
         x += dx
@@ -45,8 +46,8 @@ class Day6 < Solution
     def guard_coordinates
       x, y = 0, 0
       MATRIX.each_with_index do |row, row_i|
-        if row.index("^")
-          y, x = row_i, row.index("^")
+        if row.index(GUARD_CHAR)
+          y, x = row_i, row.index(GUARD_CHAR)
           break
         end      
       end
